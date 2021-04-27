@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ms.kwon.simple.todolist.mapper.TodoMapper">
+    <insert id="addTodo" parameterType="Todo">
+        INSERT INTO todos
+            (id, text, colorValue, isChecked)
+        VALUES
+            (#{id}, #{text}, #{colorValue}, #{isChecked})
+    </insert>
+    <select id="getTodolist" resultType="Todo">
+        SELECT id, text, colorValue, isChecked
+        FROM todos
+        ORDER BY id ASC
+    </select>
+    <select id="getTodoById" resultType="Todo">
+        SELECT id, text, colorValue, isChecked
+        FROM todos
+        WHERE id = #{id}
+    </select>
+    <update id="toggleTodoCheck" parameterType="Todo">
+        UPDATE todos
+        SET
+            isChecked = #{isChecked}
+        WHERE
+            id = #{id}
+    </update>
+    <delete id="removeTodo">
+        DELETE FROM todos
+        WHERE id = #{id}
+    </delete>
+</mapper>
