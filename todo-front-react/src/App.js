@@ -1,12 +1,10 @@
 import { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import {
     addTodoAction,
     checkTodoAction,
     fetchTodos,
-    getTodoAction,
-    removeTodoAction, removeTodos,
+    removeTodos,
     selectColorAction
 } from "./actions/actions";
 import TodoTemplate from "./components/todo-template/TodoTemplate";

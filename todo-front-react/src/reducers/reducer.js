@@ -31,7 +31,7 @@ function todos(state, action) {
             return todosAfterCheck;
         case REMOVE_TODO:
             // filter 함수는 기존 배열에서 신규 배열을 만들어 반환하므로 todos 객체를 수정하는 것이 아님
-            return todos;
+            return todos.filter(todo => todo.id !== action.id);
         case GET_TODO:
             return todos;
         case RECEIVE_TODO:

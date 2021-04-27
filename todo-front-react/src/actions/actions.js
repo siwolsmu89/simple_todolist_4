@@ -30,12 +30,6 @@ export function checkTodoAction(id) {
 }
 
 export function removeTodoAction(id) {
-    axios({
-        url: 'todo/remove.do',
-        method: 'post',
-        dataType: 'json',
-        data: { id }
-    });
     return { type: REMOVE_TODO, id }
 }
 
@@ -60,7 +54,11 @@ export function fetchTodos() {
 
 export function removeTodos(id) {
     return function (dispatch) {
-        dispatch(removeTodoAction(id));
-        return axios.get('todo/getList.do').then(response => dispatch(receiveTodoAction(response.data)));
+        return axios({
+            url: 'todo/remove.do',
+            method: 'post',
+            dataType: 'json',
+            data: { id }
+        }).then(dispatch(removeTodoAction(id)));
     }
 }
