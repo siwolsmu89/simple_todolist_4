@@ -13,5 +13,5 @@ public interface TodoMapper {
     Todo getTodoById(int id);
     List<Todo> getTodolist();
     void toggleTodoCheck(Todo todo);
-    void removeTodo(int id);
+    void removeTodo(Todo todo);
 }

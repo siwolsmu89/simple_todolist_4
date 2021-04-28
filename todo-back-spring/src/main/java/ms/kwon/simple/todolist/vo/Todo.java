@@ -1,11 +1,16 @@
 package ms.kwon.simple.todolist.vo;
 
+import java.util.Date;
+
 public class Todo {
 
     private int id;
     private String text;
     private String colorValue;
     private boolean isChecked;
+    private boolean isRemoved;
+    private Date lastUpdated;
+    private Date created;
 
     public Todo() {}
 
@@ -13,7 +18,6 @@ public class Todo {
         this.id = id;
         this.text = text;
         this.colorValue = colorValue;
-        this.isChecked = false;
     }
 
     public int getId() {
@@ -46,5 +50,29 @@ public class Todo {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public boolean isRemoved() {
+        return isRemoved;
+    }
+
+    public void setRemoved(boolean removed) {
+        isRemoved = removed;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }

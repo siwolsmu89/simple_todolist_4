@@ -53,7 +53,8 @@ public class TodoService {
             return;
         }
 
-        todoMapper.removeTodo(id);
+        todo.setRemoved(true);
+        todoMapper.removeTodo(todo);
     }
 
 
