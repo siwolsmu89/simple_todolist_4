@@ -1,4 +1,8 @@
 .filter-selector div {
-    margin: 5px;
+    margin: 5px 5px 15px;
     width: 100%;
+}
+
+.filter-select select {
+    padding: .7em .1em;
 }
