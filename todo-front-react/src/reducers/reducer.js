@@ -19,7 +19,7 @@ const initialState = {
     filters: {
         isDisplayFinishedTodo: true,
         isDisplayRemovedTodo: true,
-        orderCondition: 'CREATED_DATE_DESC'
+        orderCondition: 'CREATED ASC'
     },
     fetching: { isFetching: false, lastUpdated: '' }
 }
