@@ -1,7 +1,7 @@
 import {Component} from "react";
-import './Form.css';
+import './TodoForm.css';
 
-class Form extends Component {
+class TodoForm extends Component {
 
     render() {
         const { todos, colors, onCreate } = this.props;
@@ -39,4 +39,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default TodoForm;
