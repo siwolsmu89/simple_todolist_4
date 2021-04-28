@@ -4,12 +4,15 @@ import './Spinner.css'
 
 class Spinner extends Component {
     render() {
-        const { fetching } = this.props;
+        const { fetching, colors } = this.props;
+        const activeColorIndex = colors.findIndex(color => color.active === true );
+        const activeColorValue = colors[activeColorIndex].colorValue;
+
         return (
             <div className={`spinner ${ fetching.isFetching ? 'active' : '' }`}>
                 <Loader
                     type="Oval"
-                    color="#f03e3e"
+                    color={ activeColorValue }
                     height={200}
                     width={100}
                 />
