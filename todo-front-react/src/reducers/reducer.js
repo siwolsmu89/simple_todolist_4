@@ -1,4 +1,12 @@
-import {ADD_TODO, CHECK_TODO, GET_TODO, RECEIVE_TODO, REMOVE_TODO, SELECT_COLOR} from "../actions/actions";
+import {
+    ADD_TODO,
+    CHECK_TODO, FETCHING_END,
+    FETCHING_START,
+    GET_TODO,
+    RECEIVE_TODO,
+    REMOVE_TODO,
+    SELECT_COLOR
+} from "../actions/actions";
 
 const initialState = {
     todos: [],
@@ -7,7 +15,8 @@ const initialState = {
         { id: 1, colorValue: '#f03e3e', active: false },
         { id: 2, colorValue: '#228ae6', active: false },
         { id: 3, colorValue: '#12b886', active: false }
-    ]
+    ],
+    fetching: { isFetching: false, lastUpdated: '' }
 }
 
 function todos(state, action) {
@@ -59,9 +68,22 @@ function colors(state, action) {
     }
 }
 
+function fetching(state, action) {
+    const { fetching } = state;
+    switch (action.type) {
+        case FETCHING_START:
+            return { isFetching: true, lastUpdated : action.lastUpdated };
+        case FETCHING_END:
+            return { isFetching: false, lastUpdated : action.lastUpdated };
+        default:
+            return fetching;
+    }
+}
+
 export default function reducer(state = initialState, action) {
     return {
         todos: todos(state, action),
-        colors: colors(state, action)
+        colors: colors(state, action),
+        fetching: fetching(state, action)
     };
 };

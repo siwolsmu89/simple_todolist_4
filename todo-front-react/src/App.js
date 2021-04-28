@@ -11,10 +11,11 @@ import TodoTemplate from "./components/todo-template/TodoTemplate";
 import Form from "./components/form/Form";
 import Palette from "./components/palette/Palette";
 import TodoItemList from "./components/todo-item-list/TodoItemList";
+import Spinner from "./components/spinner/Spinner";
 
 class App extends Component {
     render() {
-        const { dispatch, todos, colors } = this.props;
+        const { dispatch, todos, colors, fetching } = this.props;
         return (
             <div>
                 <TodoTemplate
@@ -22,6 +23,11 @@ class App extends Component {
                         <Palette
                             colors={ colors }
                             onSelect={ colorValue => dispatch(selectColorAction(colorValue)) }
+                        />
+                    )}
+                    spinner={(
+                        <Spinner
+                            fetching={ fetching }
                         />
                     )}
                     form={(
@@ -46,8 +52,8 @@ class App extends Component {
 }
 
 function selector(state) {
-    const { todos, colors } = state;
-    return { todos, colors };
+    const { todos, colors, fetching } = state;
+    return { todos, colors, fetching };
 }
 
 export default connect(selector)(App);

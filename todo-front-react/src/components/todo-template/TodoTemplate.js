@@ -8,12 +8,15 @@ class TodoTemplate extends Component {
     }
 
     render() {
-        const { palette, form, todoList } = this.props;
+        const { palette, spinner, form, todoList } = this.props;
         return (
             <main className="todo-list-template">
                 <div className="title">
                     Simple TodoList 3
                 </div>
+                <section className="spinner-wrapper">
+                    { spinner }
+                </section>
                 <section className="palette-wrapper">
                     { palette }
                 </section>
