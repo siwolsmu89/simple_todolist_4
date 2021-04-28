@@ -8,10 +8,12 @@ import {
     selectColorAction
 } from "./actions/actions";
 import TodoTemplate from "./components/todo-template/TodoTemplate";
-import Form from "./components/form/Form";
+import TodoForm from "./components/todo-form/TodoForm";
 import Palette from "./components/palette/Palette";
 import TodoItemList from "./components/todo-item-list/TodoItemList";
 import Spinner from "./components/spinner/Spinner";
+import FilterTemplate from "./components/filter-template/FilterTemplate";
+import FilterSelector from "./components/filter-selector/FilterSelector";
 
 class App extends Component {
     render() {
@@ -19,19 +21,14 @@ class App extends Component {
         return (
             <div>
                 <TodoTemplate
-                    palette={(
-                        <Palette
-                            colors={ colors }
-                            onSelect={ colorValue => dispatch(selectColorAction(colorValue)) }
-                        />
-                    )}
                     spinner={(
                         <Spinner
                             fetching={ fetching }
+                            colors={ colors }
                         />
                     )}
                     form={(
-                        <Form
+                        <TodoForm
                             todos={ todos }
                             colors={ colors }
                             onCreate={ (nextId, text, colorValue) => dispatch(addTodoAction(nextId, text, colorValue)) }
@@ -45,6 +42,17 @@ class App extends Component {
                         />
                     )}
                     getList={ () => dispatch(fetchTodos()) }
+                />
+                <FilterTemplate
+                    palette={(
+                        <Palette
+                            colors={ colors }
+                            onSelect={ colorValue => dispatch(selectColorAction(colorValue)) }
+                        />
+                    )}
+                    filterSelector={(
+                        <FilterSelector />
+                    )}
                 />
             </div>
         );
