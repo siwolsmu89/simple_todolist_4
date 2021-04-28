@@ -8,7 +8,7 @@ class TodoTemplate extends Component {
     }
 
     render() {
-        const { palette, spinner, form, todoList } = this.props;
+        const { spinner, form, todoList } = this.props;
         return (
             <main className="todo-list-template">
                 <div className="title">
@@ -16,9 +16,6 @@ class TodoTemplate extends Component {
                 </div>
                 <section className="spinner-wrapper">
                     { spinner }
-                </section>
-                <section className="palette-wrapper">
-                    { palette }
                 </section>
                 <section className="form-wrapper">
                     { form }
