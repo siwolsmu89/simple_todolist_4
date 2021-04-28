@@ -16,6 +16,11 @@ const initialState = {
         { id: 2, colorValue: '#228ae6', active: false },
         { id: 3, colorValue: '#12b886', active: false }
     ],
+    filters: {
+        isDisplayFinishedTodo: true,
+        isDisplayRemovedTodo: true,
+        orderCondition: 'CREATED_DATE_DESC'
+    },
     fetching: { isFetching: false, lastUpdated: '' }
 }
 
