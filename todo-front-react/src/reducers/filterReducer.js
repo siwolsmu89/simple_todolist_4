@@ -1,15 +1,20 @@
-import {CHANGE_ORDER_CONDITION, TOGGLE_DISPLAY_FINISHED, TOGGLE_DISPLAY_REMOVED} from "../actions/filterActions";
+import {
+    TOGGLE_DISPLAY_FINISHED,
+    TOGGLE_DISPLAY_REMOVED,
+    CHANGE_ORDER_CONDITION,
+    toggleDisplayFinishedTodoAction, toggleDisplayRemovedTodoAction, changeOrderConditionAction
+} from "../actions/filterActions";
 
 export default function filters(state, action) {
-    const { filters } = state;
+    const { isDisplayFinishedTodo, isDisplayRemovedTodo, orderCondition } = state.filters;
 
     switch (action.type) {
         case TOGGLE_DISPLAY_FINISHED:
-            return filters;
+            return toggleDisplayFinishedTodoAction(isDisplayFinishedTodo);
         case TOGGLE_DISPLAY_REMOVED:
-            return filters;
+            return toggleDisplayRemovedTodoAction(isDisplayRemovedTodo);
         case CHANGE_ORDER_CONDITION:
-            return filters;
+            return changeOrderConditionAction(orderCondition);
         default:
             return filters;
     }

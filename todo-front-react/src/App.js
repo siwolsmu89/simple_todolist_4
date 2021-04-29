@@ -12,7 +12,7 @@ import {selectColorAction} from "./actions/colorActions";
 
 class App extends Component {
     render() {
-        const { dispatch, todos, colors, fetching } = this.props;
+        const { dispatch, todos, colors, filters, fetching } = this.props;
         return (
             <div>
                 <TodoTemplate
@@ -46,7 +46,9 @@ class App extends Component {
                         />
                     )}
                     filterSelector={(
-                        <FilterSelector />
+                        <FilterSelector
+                            filters={ filters }
+                        />
                     )}
                 />
             </div>
@@ -55,8 +57,8 @@ class App extends Component {
 }
 
 function selector(state) {
-    const { todos, colors, fetching } = state;
-    return { todos, colors, fetching };
+    const { todos, colors, filters, fetching } = state;
+    return { todos, colors, filters, fetching };
 }
 
 export default connect(selector)(App);
