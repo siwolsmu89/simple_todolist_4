@@ -1,12 +1,5 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {
-    addTodoAction,
-    checkTodoAction,
-    fetchTodos,
-    removeTodos,
-    selectColorAction
-} from "./actions/actions";
 import TodoTemplate from "./components/todo-template/TodoTemplate";
 import TodoForm from "./components/todo-form/TodoForm";
 import Palette from "./components/palette/Palette";
@@ -14,6 +7,8 @@ import TodoItemList from "./components/todo-item-list/TodoItemList";
 import Spinner from "./components/spinner/Spinner";
 import FilterTemplate from "./components/filter-template/FilterTemplate";
 import FilterSelector from "./components/filter-selector/FilterSelector";
+import {addTodo, checkTodo, getTodoList, removeTodo} from "./actions/axiosActions";
+import {selectColorAction} from "./actions/colorActions";
 
 class App extends Component {
     render() {
@@ -31,17 +26,17 @@ class App extends Component {
                         <TodoForm
                             todos={ todos }
                             colors={ colors }
-                            onCreate={ (nextId, text, colorValue) => dispatch(addTodoAction(nextId, text, colorValue)) }
+                            onCreate={ (nextId, text, colorValue) => dispatch(addTodo(nextId, text, colorValue)) }
                         />
                     )}
                     todoList={(
                         <TodoItemList
                             todos={ todos }
-                            onToggle={ id => dispatch(checkTodoAction(id)) }
-                            onRemove={ id => dispatch(removeTodos(id)) }
+                            onToggle={ id => dispatch(checkTodo(id)) }
+                            onRemove={ id => dispatch(removeTodo(id)) }
                         />
                     )}
-                    getList={ () => dispatch(fetchTodos()) }
+                    getList={ () => dispatch(getTodoList()) }
                 />
                 <FilterTemplate
                     palette={(

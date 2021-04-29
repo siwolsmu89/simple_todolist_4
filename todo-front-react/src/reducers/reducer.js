@@ -1,12 +1,7 @@
-import {
-    ADD_TODO,
-    CHECK_TODO, FETCHING_END,
-    FETCHING_START,
-    GET_TODO,
-    RECEIVE_TODO,
-    REMOVE_TODO,
-    SELECT_COLOR
-} from "../actions/actions";
+import colors from "./colorReducer";
+import todos from "./todoReducer";
+import fetching from "./fetchingReducer";
+import filters from "./filterReducer";
 
 const initialState = {
     todos: [],
@@ -21,74 +16,14 @@ const initialState = {
         isDisplayRemovedTodo: true,
         orderCondition: 'CREATED ASC'
     },
-    fetching: { isFetching: false, lastUpdated: '' }
-}
-
-function todos(state, action) {
-    const { todos } = state;
-    switch(action.type) {
-        case ADD_TODO:
-            const newTodo = {
-                id: action.id,
-                text: action.text,
-                isChecked: false,
-                colorValue: action.colorValue
-            };
-
-            return [...todos, newTodo];
-        case CHECK_TODO:
-            const todosAfterCheck = [...todos];
-
-            const checkIndex = todosAfterCheck.findIndex(todo => todo.id === action.id);
-            todosAfterCheck[checkIndex].isChecked = !todosAfterCheck[checkIndex].isChecked;
-
-            return todosAfterCheck;
-        case REMOVE_TODO:
-            // filter 함수는 기존 배열에서 신규 배열을 만들어 반환하므로 todos 객체를 수정하는 것이 아님
-            return todos.filter(todo => todo.id !== action.id);
-        case GET_TODO:
-            return todos;
-        case RECEIVE_TODO:
-            return action.todos;
-        default:
-            return todos;
-    }
-}
-
-function colors(state, action) {
-    const { colors } = state;
-    switch (action.type) {
-        case SELECT_COLOR:
-            const colorsAfterSelect = [...colors];
-            for (const color of colorsAfterSelect) {
-                color.active = false;
-            }
-
-            const selectedIndex = colors.findIndex(color => color.colorValue === action.colorValue);
-            colorsAfterSelect[selectedIndex].active = true;
-
-            return colorsAfterSelect;
-        default:
-            return colors;
-    }
-}
-
-function fetching(state, action) {
-    const { fetching } = state;
-    switch (action.type) {
-        case FETCHING_START:
-            return { isFetching: true, lastUpdated : action.lastUpdated };
-        case FETCHING_END:
-            return { isFetching: false, lastUpdated : action.lastUpdated };
-        default:
-            return fetching;
-    }
+    fetching: { isFetching: false, lastUpdated: Date.now() }
 }
 
 export default function reducer(state = initialState, action) {
     return {
         todos: todos(state, action),
         colors: colors(state, action),
+        filters: filters(state, action),
         fetching: fetching(state, action)
     };
 };
