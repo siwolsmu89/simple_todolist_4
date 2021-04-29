@@ -1,12 +1,18 @@
 import axios from "axios";
 import {fetchEndAction, fetchStartAction} from "./fetchingActions";
 import {addTodoAction, checkTodoAction, receiveTodoAction, removeTodoAction} from "./todoActions";
+import {refreshFilterAction} from "./filterActions";
 
-export function getTodoList() {
+export function getTodoList(filters) {
     return function (dispatch) {
+        dispatch(refreshFilterAction(filters));
         dispatch(fetchStartAction());
-        axios.get('todo/getList.do')
-        .then(response => {
+        axios({
+            url: 'todo/getList.do',
+            method: 'post',
+            dataType: 'json',
+            data: filters
+        }).then(response => {
             setTimeout(() => {
                 dispatch(receiveTodoAction(response.data));
                 dispatch(fetchEndAction());

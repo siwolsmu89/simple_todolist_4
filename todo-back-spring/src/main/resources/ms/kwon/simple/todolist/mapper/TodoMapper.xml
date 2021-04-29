@@ -3,18 +3,25 @@
 <mapper namespace="ms.kwon.simple.todolist.mapper.TodoMapper">
     <insert id="addTodo" parameterType="Todo">
         INSERT INTO todos4
-            (id, text, colorValue)
+            (text, colorValue)
         VALUES
-            (#{id}, #{text}, #{colorValue})
+            (#{text}, #{colorValue})
     </insert>
-    <select id="getTodolist" resultType="Todo">
+    <select id="getTodolist" parameterType="hashMap" resultType="Todo">
         SELECT id, text, colorValue, isChecked, isRemoved, lastUpdated, created
         FROM todos4
-        <if test="selectCondition != null">
-            WHERE #{selectCondition}
+        WHERE 1=1
+        <if test="isDisplayFinishedTodo == false">
+            AND isChecked = false
         </if>
-        <if test="orderCondition != null">
-            ORDER BY #{orderCondition}
+        <if test="isDisplayRemovedTodo == false">
+            AND isRemoved = false
+        </if>
+        <if test="orderCondition == 'CREATED DESC'">
+            ORDER BY id DESC
+        </if>
+        <if test="orderCondition == 'CREATED ASC'">
+            ORDER BY id ASC
         </if>
     </select>
     <select id="getTodoById" resultType="Todo">

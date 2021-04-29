@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/todo")
@@ -27,11 +28,9 @@ public class TodoController {
     public void addTodo(@RequestBody Todo todo){
         System.out.println("@@@ TodoController :: add.do start");
 
-        int id = todo.getId();
         String text = todo.getText();
         String colorValue = todo.getColorValue();
 
-        System.out.println("id: " + id);
         System.out.println("text: " + text);
         System.out.println("color: " +colorValue);
 
@@ -40,10 +39,10 @@ public class TodoController {
     }
 
     @RequestMapping("/getList.do")
-    public String getTodolist() {
+    public String getTodolist(@RequestBody Map<String,Object> filters) {
         System.out.println("@@@ TodoController :: getTodolist.do start");
 
-        List<Todo> todolist = todoService.getTodolist();
+        List<Todo> todolist = todoService.getTodolist(filters);
 
         Gson gson = new Gson();
         String result = gson.toJson(todolist);

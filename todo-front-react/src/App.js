@@ -11,11 +11,13 @@ import {addTodo, checkTodo, getTodoList, removeTodo} from "./actions/axiosAction
 import {selectColorAction} from "./actions/colorActions";
 
 class App extends Component {
+
     render() {
         const { dispatch, todos, colors, filters, fetching } = this.props;
         return (
             <div>
                 <TodoTemplate
+                    filters={ filters }
                     spinner={(
                         <Spinner
                             fetching={ fetching }
@@ -36,7 +38,7 @@ class App extends Component {
                             onRemove={ id => dispatch(removeTodo(id)) }
                         />
                     )}
-                    getList={ () => dispatch(getTodoList()) }
+                    getList={ filters => dispatch(getTodoList(filters)) }
                 />
                 <FilterTemplate
                     palette={(
@@ -48,6 +50,7 @@ class App extends Component {
                     filterSelector={(
                         <FilterSelector
                             filters={ filters }
+                            refreshFilter={ filters => dispatch(getTodoList(filters)) }
                         />
                     )}
                 />

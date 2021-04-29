@@ -3,8 +3,8 @@ import './TodoTemplate.css';
 
 class TodoTemplate extends Component {
     componentDidMount() {
-        const { getList } = this.props;
-        getList();
+        const { filters, getList } = this.props;
+        getList(filters);
     }
 
     render() {

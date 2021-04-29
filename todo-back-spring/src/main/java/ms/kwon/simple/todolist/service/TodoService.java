@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("TodoService")
 public class TodoService {
@@ -15,20 +16,19 @@ public class TodoService {
 
     public void addTodo(Todo todo) {
         System.out.println("### TodoService :: addTodo");
-        List<Todo> currentTodos = todoMapper.getTodolist();
-        for (Todo currentTodo : currentTodos) {
-            if (todo.getId() == currentTodo.getId()) {
-                System.out.println("### TodoService :: addTodo Error - Duplicated ID");
-                return;
-            }
-        }
-
         todoMapper.addTodo(todo);
     }
 
-    public List<Todo> getTodolist() {
+    public List<Todo> getTodolist(Map<String,Object> filters) {
         System.out.println("### TodoService :: getTodolist");
-        List<Todo> result = todoMapper.getTodolist();
+
+        if (filters != null) {
+            System.out.println(filters.get("isDisplayFinishedTodo"));
+            System.out.println(filters.get("isDisplayRemovedTodo"));
+            System.out.println(filters.get("orderCondition"));
+        }
+
+        List<Todo> result = todoMapper.getTodolist(filters);
         System.out.println(result.toString());
         return result;
     }

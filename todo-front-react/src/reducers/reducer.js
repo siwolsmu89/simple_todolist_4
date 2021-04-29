@@ -12,8 +12,8 @@ const initialState = {
         { id: 3, colorValue: '#12b886', active: false }
     ],
     filters: {
-        isDisplayFinishedTodo: true,
-        isDisplayRemovedTodo: true,
+        isDisplayFinishedTodo: false,
+        isDisplayRemovedTodo: false,
         orderCondition: 'CREATED ASC'
     },
     fetching: { isFetching: false, lastUpdated: Date.now() }
