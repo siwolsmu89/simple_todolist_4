@@ -1,17 +1,18 @@
 import {Component} from "react";
 
 class TodoModal extends Component {
-    
+
     render () {
-        const { text, colorValue, isChecked, isRemoved, onUpdate } = this.props;
+        const { modalState } = this.props;
+        const { text, colorValue } = modalState.todo;
 
         return(
             <div className="todo-modal">
                 <div className="todo-update-box">
                     <div className="todo-text">
                         <input
-                            style={ { color: colorValue } }
-                            value={ text }
+                            type="text"
+                            placeholder={ text }
                         />
                     </div>
                     <div className="todo-checkbox">
