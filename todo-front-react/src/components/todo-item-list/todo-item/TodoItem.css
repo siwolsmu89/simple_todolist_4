@@ -28,7 +28,12 @@
     opacity: 0;
 }
 
-.removed {
+.removed, .removed:hover {
+    background-color: black;
+    opacity: 0.3;
+}
+
+.removed .remove {
     opacity: 1;
 }
 
@@ -40,12 +45,4 @@
 .checked {
     text-decoration: line-through;
     color: #adb5bd;
-}
-
-.check-mark {
-    font-size: 1.5rem;
-    line-height: 1rem;
-    margin-left: 1rem;
-    color: #3bc9db;
-    font-weight: 800;
 }

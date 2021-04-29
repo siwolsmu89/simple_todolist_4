@@ -11,14 +11,9 @@ class TodoItem extends Component {
         const { id, text, colorValue, isChecked, isRemoved, onToggle, onRemove } = this.props;
 
         return (
-            <div className="todo-item"
-                 id={ id }
-                 onClick={ () => {
-                     if (!isRemoved) {
-                        onToggle(id);
-                     }
-                 } }>
-                <div className={`remove ${isRemoved ? 'removed' : '' }`}
+            <div className={ `todo-item ${isRemoved ? 'removed' : '' }` }
+                 id={ id }>
+                <div className="remove"
                      onClick={ (e) => {
                         e.stopPropagation();
                         if (!isChecked && !isRemoved) {
@@ -30,9 +25,15 @@ class TodoItem extends Component {
                     <div style={ { color: colorValue } }> { text } </div>
                 </div>
                 <div>
-                    {
-                        isChecked && (<div className="check-mark">&#x2713;</div>)
-                    }
+                   <input type="checkbox"
+                          className="finished-checkbox"
+                          onClick={ () => {
+                               if (!isRemoved) {
+                                   onToggle(id);
+                               }
+                          } }
+                          checked={`${isChecked ? 'checked' : ''}`}
+                   />
                 </div>
             </div>
         );
