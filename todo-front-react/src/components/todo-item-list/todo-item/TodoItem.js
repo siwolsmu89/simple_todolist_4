@@ -26,6 +26,7 @@ class TodoItem extends Component {
                 </div>
                 <div>
                    <input type="checkbox"
+                          readOnly
                           className="finished-checkbox"
                           onClick={ () => {
                                if (!isRemoved) {
