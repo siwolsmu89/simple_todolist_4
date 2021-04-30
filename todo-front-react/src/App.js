@@ -9,6 +9,7 @@ import FilterTemplate from "./components/filter-template/FilterTemplate";
 import FilterSelector from "./components/filter-selector/FilterSelector";
 import {addTodo, checkTodo, getTodoList, removeTodo} from "./actions/axiosActions";
 import {selectColorAction} from "./actions/colorActions";
+import {closeModalAction, openModalAction} from "./actions/modalActions";
 
 class App extends Component {
 
@@ -35,6 +36,8 @@ class App extends Component {
                         <TodoItemList
                             todos={ todos }
                             modalState={ modalState }
+                            openModal={ (todo) => dispatch(openModalAction(todo))}
+                            closeModal={ () => dispatch(closeModalAction()) }
                             onToggle={ id => dispatch(checkTodo(id)) }
                             onRemove={ id => dispatch(removeTodo(id)) }
                         />

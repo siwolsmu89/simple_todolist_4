@@ -9,19 +9,16 @@ class  TodoItemList extends Component {
     }
 
     render() {
-        const { todos, onToggle, modalState, onRemove } = this.props;
+        const { todos, onToggle, modalState, onRemove, openModal, closeModal } = this.props;
 
         const todoList = todos.map(
-            ({ id, text, colorValue, isChecked, isRemoved }) => (
+            (todo) => (
                 <TodoItem
-                    key={ id }
-                    id={ id }
-                    text={ text }
-                    colorValue={ colorValue }
-                    isChecked={ isChecked }
-                    isRemoved={ isRemoved }
+                    key={ todo.id }
+                    todo={ todo }
                     onToggle={ onToggle }
                     onRemove={ onRemove }
+                    openModal={ openModal }
                 />
             )
         );
@@ -33,6 +30,7 @@ class  TodoItemList extends Component {
                 </section>
                 <section className="todo-modal-wrapper">
                     <TodoModal
+                        closeModal={ closeModal }
                         modalState={ modalState }
                     />
                 </section>

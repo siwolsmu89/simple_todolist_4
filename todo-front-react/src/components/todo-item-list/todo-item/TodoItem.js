@@ -3,12 +3,9 @@ import './TodoItem.css';
 
 class TodoItem extends Component {
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.isChecked !== nextProps.isChecked;
-    }
-
     render() {
-        const { id, text, colorValue, isChecked, isRemoved, onToggle, onRemove } = this.props;
+        const { todo, onToggle, onRemove, openModal } = this.props;
+        const {  id, text, colorValue, isChecked, isRemoved } = todo;
 
         return (
             <div className={ `todo-item ${isRemoved ? 'removed' : '' }` }
@@ -21,7 +18,9 @@ class TodoItem extends Component {
                         }
                      } }
                 >&times;</div>
-                <div className={`todo-text ${isChecked ? 'checked' : '' }`}>
+                <div className={`todo-text ${isChecked ? 'checked' : '' }`}
+                     onClick={ () => openModal(todo) }
+                >
                     <div style={ { color: colorValue } }> { text } </div>
                 </div>
                 <div>
