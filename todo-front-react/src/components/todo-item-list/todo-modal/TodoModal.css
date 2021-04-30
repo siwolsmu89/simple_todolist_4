@@ -59,6 +59,41 @@
     left: 75%;
 }
 
+.todo-modal .todo-status {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.todo-modal .todo-status .todo-checkbox-control {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.todo-checkbox-control input:checked ~ & {
+    background-color: blue;
+}
+
+.todo-modal .hidden-checkbox {
+    display: none;
+}
+
+.todo-modal .control-box {
+    position: relative;
+    top: 2px;
+    height: 20px;
+    width: 20px;
+    background-color: lightgray;
+    margin-right: 10px;
+}
+
+.todo-modal label div {
+    box-sizing: border-box;
+}
+
+
 .todo-modal .modal-close .close-buttons button {
     width: 80px;
     height: 40px;

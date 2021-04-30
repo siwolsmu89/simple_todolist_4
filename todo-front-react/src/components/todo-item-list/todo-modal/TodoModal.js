@@ -3,6 +3,10 @@ import "./TodoModal.css";
 
 class TodoModal extends Component {
 
+    toggleCheck () {
+
+    }
+
     render () {
         const { modalState, updateTodo, closeModal } = this.props;
         const { todo } = modalState;
@@ -28,14 +32,23 @@ class TodoModal extends Component {
                         </div>
                         <div className="todo-status">
                             <div>TODO STATUS</div>
+                            <label className="todo-checkbox-control">
+                                <input
+                                    id="check-removed"
+                                    className="hidden-checkbox"
+                                    type="checkbox"
+                                    checked={ todo.isRemoved ? 'checked' : '' }
+                                />
+                                <div
+                                    className="control-box"
+                                    onClick={ (e) => {
+                                        updatedTodo.isRemoved = document.querySelector("#check-removed").checked;
+                                    } }
+                                />
+                                <div>DELETED</div>
+                            </label>
                             <input type="checkbox"
-                                   checked={ `${todo.isRemoved ? 'checked' : '' }` }
-                                   onChange={ (e) => {
-                                     updatedTodo.isRemoved = e.target.checked;
-                                   } }
-                            /> DELETED
-                            <input type="checkbox"
-                                   checked={ `${todo.isChecked ? 'checked' : '' }` }
+                                   checked={ todo.isChecked ? 'checked' : '' }
                                    onChange={ (e) => {
                                        updatedTodo.isChecked = e.target.checked;
                                    } }
