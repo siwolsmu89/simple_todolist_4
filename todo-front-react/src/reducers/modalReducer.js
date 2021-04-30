@@ -6,13 +6,11 @@ export default function modalStates(state, action) {
     switch (action.type) {
         case OPEN_MODAL:
             return ({
-              isModalOpen: true,
               todo: action.todo
             });
         case CLOSE_MODAL:
             return ({
-                isModalOpen: false,
-                todo: {}
+                todo: null
             })
         default:
             return modalState;

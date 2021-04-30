@@ -13,7 +13,7 @@ import {selectColorAction} from "./actions/colorActions";
 class App extends Component {
 
     render() {
-        const { dispatch, todos, colors, filters, fetching } = this.props;
+        const { dispatch, todos, colors, filters, fetching, modalState } = this.props;
         return (
             <div>
                 <TodoTemplate
@@ -34,6 +34,7 @@ class App extends Component {
                     todoList={(
                         <TodoItemList
                             todos={ todos }
+                            modalState={ modalState }
                             onToggle={ id => dispatch(checkTodo(id)) }
                             onRemove={ id => dispatch(removeTodo(id)) }
                         />
@@ -60,8 +61,8 @@ class App extends Component {
 }
 
 function selector(state) {
-    const { todos, colors, filters, fetching } = state;
-    return { todos, colors, filters, fetching };
+    const { todos, colors, filters, fetching, modalState } = state;
+    return { todos, colors, filters, fetching, modalState };
 }
 
 export default connect(selector)(App);

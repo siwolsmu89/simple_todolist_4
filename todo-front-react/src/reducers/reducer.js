@@ -19,8 +19,7 @@ const initialState = {
     },
     fetching: { isFetching: false, lastUpdated: Date.now() },
     modalState: {
-        isModalOpen: false,
-        todo: {}
+        todo: null
     }
 }
 

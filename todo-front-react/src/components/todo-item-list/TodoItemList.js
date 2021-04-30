@@ -5,14 +5,11 @@ import TodoModal from "./todo-modal/TodoModal";
 class  TodoItemList extends Component {
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return this.props.todos !== nextProps.todos;
+        return this.props.todos !== nextProps.todos || this.props.modalState !== nextProps.modalState;
     }
 
     render() {
-        const { todos, onToggle, onRemove } = this.props;
-        const modalState = {
-            todo: { ...todos[0] }
-        }
+        const { todos, onToggle, modalState, onRemove } = this.props;
 
         const todoList = todos.map(
             ({ id, text, colorValue, isChecked, isRemoved }) => (
