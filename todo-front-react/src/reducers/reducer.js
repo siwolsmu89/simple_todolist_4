@@ -2,6 +2,7 @@ import colors from "./colorReducer";
 import todos from "./todoReducer";
 import fetching from "./fetchingReducer";
 import filters from "./filterReducer";
+import modalStates from "./modalReducer";
 
 const initialState = {
     todos: [],
@@ -16,7 +17,11 @@ const initialState = {
         isDisplayRemovedTodo: false,
         orderCondition: 'CREATED ASC'
     },
-    fetching: { isFetching: false, lastUpdated: Date.now() }
+    fetching: { isFetching: false, lastUpdated: Date.now() },
+    modalState: {
+        isModalOpen: false,
+        todo: {}
+    }
 }
 
 export default function reducer(state = initialState, action) {
@@ -24,6 +29,7 @@ export default function reducer(state = initialState, action) {
         todos: todos(state, action),
         colors: colors(state, action),
         filters: filters(state, action),
-        fetching: fetching(state, action)
+        fetching: fetching(state, action),
+        modalState: modalStates(state, action)
     };
 };
