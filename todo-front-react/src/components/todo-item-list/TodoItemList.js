@@ -9,7 +9,7 @@ class  TodoItemList extends Component {
     }
 
     render() {
-        const { todos, onToggle, modalState, onRemove, openModal, closeModal } = this.props;
+        const { todos, onToggle, modalState, onRemove, updateTodo, openModal, closeModal } = this.props;
 
         const todoList = todos.map(
             (todo) => (
@@ -30,6 +30,7 @@ class  TodoItemList extends Component {
                 </section>
                 <section className="todo-modal-wrapper">
                     <TodoModal
+                        updateTodo={ updateTodo }
                         closeModal={ closeModal }
                         modalState={ modalState }
                     />

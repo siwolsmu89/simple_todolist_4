@@ -48,7 +48,7 @@ public class Todo {
         return isChecked;
     }
 
-    public void setChecked(boolean checked) {
+    public void setIsChecked(boolean checked) {
         isChecked = checked;
     }
 
@@ -56,7 +56,7 @@ public class Todo {
         return isRemoved;
     }
 
-    public void setRemoved(boolean removed) {
+    public void setIsRemoved(boolean removed) {
         isRemoved = removed;
     }
 

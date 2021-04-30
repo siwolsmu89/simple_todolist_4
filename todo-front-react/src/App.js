@@ -7,7 +7,7 @@ import TodoItemList from "./components/todo-item-list/TodoItemList";
 import Spinner from "./components/spinner/Spinner";
 import FilterTemplate from "./components/filter-template/FilterTemplate";
 import FilterSelector from "./components/filter-selector/FilterSelector";
-import {addTodo, checkTodo, getTodoList, removeTodo} from "./actions/axiosActions";
+import {addTodo, checkTodo, getTodoList, removeTodo, updateTodo} from "./actions/axiosActions";
 import {selectColorAction} from "./actions/colorActions";
 import {closeModalAction, openModalAction} from "./actions/modalActions";
 
@@ -36,6 +36,7 @@ class App extends Component {
                         <TodoItemList
                             todos={ todos }
                             modalState={ modalState }
+                            updateTodo = { (todo) => dispatch(updateTodo(todo, filters))}
                             openModal={ (todo) => dispatch(openModalAction(todo))}
                             closeModal={ () => dispatch(closeModalAction()) }
                             onToggle={ id => dispatch(checkTodo(id)) }

@@ -45,4 +45,15 @@
         WHERE
             id = #{id}
     </update>
+    <update id="updateTodo" parameterType="Todo">
+        UPDATE todos4
+        SET
+            text = #{text},
+            colorValue = #{colorValue},
+            isChecked = #{isChecked},
+            isRemoved = #{isRemoved},
+            lastUpdated = NOW()
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

@@ -41,7 +41,7 @@ public class TodoService {
             return;
         }
 
-        todo.setChecked(!todo.isChecked());
+        todo.setIsChecked(!todo.isChecked());
         todoMapper.toggleTodoCheck(todo);
     }
 
@@ -53,8 +53,20 @@ public class TodoService {
             return;
         }
 
-        todo.setRemoved(true);
+        todo.setIsRemoved(true);
         todoMapper.removeTodo(todo);
+    }
+
+    public void updateTodo(Todo todo) {
+        System.out.println("### TodoService :: updateTodo");
+        Todo savedTodo = todoMapper.getTodoById(todo.getId());
+        if (savedTodo == null) {
+            System.out.println("Input ID : " + todo.getId());
+            System.out.println("### TodoService :: updateTodo Error - No Such ID exists");
+            return;
+        }
+
+        todoMapper.updateTodo(todo);
     }
 
 

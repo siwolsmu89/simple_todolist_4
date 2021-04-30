@@ -15,4 +15,5 @@ public interface TodoMapper {
     List<Todo> getTodolist(Map<String,Object> params);
     void toggleTodoCheck(Todo todo);
     void removeTodo(Todo todo);
+    void updateTodo(Todo todo);
 }

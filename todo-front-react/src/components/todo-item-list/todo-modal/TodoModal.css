@@ -63,7 +63,15 @@
     width: 80px;
     height: 40px;
     margin: 10px;
-    background-color: green;
     border: none;
     color: white;
+    background-color: darkgray;
+}
+
+.todo-modal .modal-close .close-buttons button.close-save:hover {
+    background-color: darkgreen;
+}
+
+.todo-modal .modal-close .close-buttons button.close-cancel:hover {
+    background-color: darkred;
 }

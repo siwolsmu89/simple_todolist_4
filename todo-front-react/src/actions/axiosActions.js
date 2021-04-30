@@ -1,7 +1,8 @@
 import axios from "axios";
 import {fetchEndAction, fetchStartAction} from "./fetchingActions";
-import {addTodoAction, checkTodoAction, receiveTodoAction, removeTodoAction} from "./todoActions";
+import {addTodoAction, checkTodoAction, receiveTodoAction, removeTodoAction, updateTodoAction} from "./todoActions";
 import {refreshFilterAction} from "./filterActions";
+import {closeModalAction} from "./modalActions";
 
 export function getTodoList(filters) {
     return function (dispatch) {
@@ -54,5 +55,19 @@ export function checkTodo(id) {
             dataType: 'json',
             data: { id }
         })
+    }
+}
+
+export function updateTodo(todo, filters) {
+    return function (dispatch) {
+        dispatch(fetchStartAction());
+        axios({
+            url: 'todo/update.do',
+            method: 'post',
+            dataType: 'json',
+            data : { id: todo.id, text: todo.text, colorValue: todo.colorValue, isChecked: todo.isChecked, isRemoved: todo.isRemoved }
+        }).then(
+            () => dispatch(getTodoList(filters))
+        );
     }
 }

@@ -4,7 +4,7 @@ import "./TodoModal.css";
 class TodoModal extends Component {
 
     render () {
-        const { modalState, closeModal } = this.props;
+        const { modalState, updateTodo, closeModal } = this.props;
         const { todo } = modalState;
         let updatedTodo = { ...todo };
 
@@ -28,8 +28,18 @@ class TodoModal extends Component {
                         </div>
                         <div className="todo-status">
                             <div>TODO STATUS</div>
-                            <input type="checkbox" checked={ `${todo.isRemoved ? 'checked' : '' }` } /> DELETED
-                            <input type="checkbox" checked={ `${todo.isChecked ? 'checked' : '' }` } /> FINISHED
+                            <input type="checkbox"
+                                   checked={ `${todo.isRemoved ? 'checked' : '' }` }
+                                   onChange={ (e) => {
+                                     updatedTodo.isRemoved = e.target.checked;
+                                   } }
+                            /> DELETED
+                            <input type="checkbox"
+                                   checked={ `${todo.isChecked ? 'checked' : '' }` }
+                                   onChange={ (e) => {
+                                       updatedTodo.isChecked = e.target.checked;
+                                   } }
+                            /> FINISHED
                         </div>
                         <div className="todo-info">
                             <div className="created-date">
@@ -41,8 +51,13 @@ class TodoModal extends Component {
                         </div>
                         <div className="modal-close">
                             <div className="close-buttons">
-                                <button onClick={ () => { closeModal(); } }>SAVE</button>
-                                <button onClick={ () => { closeModal(); } }>CANCEL</button>
+                                <button className="close-save" onClick={ () => {
+                                    if (updatedTodo !== todo) {
+                                        updateTodo(updatedTodo);
+                                    }
+                                    closeModal();
+                                } }>SAVE</button>
+                                <button className="close-cancel" onClick={ () => { closeModal(); } }>CANCEL</button>
                             </div>
                         </div>
                     </div>

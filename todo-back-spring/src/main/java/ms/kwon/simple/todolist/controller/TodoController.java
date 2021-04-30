@@ -66,4 +66,15 @@ public class TodoController {
         System.out.println("@@@ TodoController :: remove.do end");
     }
 
+    @RequestMapping("/update.do")
+    public void updateTodo(@RequestBody Todo todo) {
+        System.out.println("@@@ TodoController :: update.do start");
+        System.out.println("id " + todo.getId());
+        System.out.println("text " + todo.getText());
+        System.out.println("isChecked " + todo.isChecked());
+        System.out.println("isRemoved " + todo.isRemoved());
+        todoService.updateTodo(todo);
+        System.out.println("@@@ TodoController :: update.do end");
+    }
+
 }
