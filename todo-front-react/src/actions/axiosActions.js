@@ -1,8 +1,7 @@
 import axios from "axios";
 import {fetchEndAction, fetchStartAction} from "./fetchingActions";
-import {addTodoAction, checkTodoAction, receiveTodoAction, removeTodoAction, updateTodoAction} from "./todoActions";
+import {addTodoAction, checkTodoAction, receiveTodoAction, removeTodoAction} from "./todoActions";
 import {refreshFilterAction} from "./filterActions";
-import {closeModalAction} from "./modalActions";
 
 export function getTodoList(filters) {
     return function (dispatch) {
