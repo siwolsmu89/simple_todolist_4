@@ -72,8 +72,29 @@
     font-size: 18px;
 }
 
-.todo-checkbox-control input:checked ~ & {
-    background-color: blue;
+.todo-checkbox-control input:checked + .control-box {
+    background-color: #12b886;
+}
+
+.todo-checkbox-control input + .control-box.updated {
+    background-color: lightsalmon;
+}
+
+.todo-checkbox-control input + .control-box::after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.todo-checkbox-control input:checked + .control-box::after {
+    left: 8px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: block;
 }
 
 .todo-modal .hidden-checkbox {

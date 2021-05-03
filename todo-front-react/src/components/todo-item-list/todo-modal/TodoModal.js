@@ -3,8 +3,14 @@ import "./TodoModal.css";
 
 class TodoModal extends Component {
 
-    toggleCheck () {
-
+    toggleCheck (target, isUpdated) {
+        const targetId = target.id;
+        const controlBox = document.querySelector("#" + targetId + " + .control-box");
+        if (controlBox.classList && isUpdated) {
+            controlBox.classList.add("updated");
+        } else {
+            controlBox.classList.remove("updated");
+        }
     }
 
     render () {
@@ -32,27 +38,44 @@ class TodoModal extends Component {
                         </div>
                         <div className="todo-status">
                             <div>TODO STATUS</div>
-                            <label className="todo-checkbox-control">
+                            <label
+                                className="todo-checkbox-control"
+                            >
                                 <input
                                     id="check-removed"
                                     className="hidden-checkbox"
                                     type="checkbox"
-                                    checked={ todo.isRemoved ? 'checked' : '' }
+                                    defaultChecked={ todo.isRemoved ? 'checked' : '' }
+                                    onChange={ (e) => {
+                                        updatedTodo.isRemoved = e.target.checked;
+                                        const isUpdated = updatedTodo.isRemoved !== todo.isRemoved;
+                                        this.toggleCheck(e.target, isUpdated);
+                                    } }
                                 />
                                 <div
                                     className="control-box"
-                                    onClick={ (e) => {
-                                        updatedTodo.isRemoved = document.querySelector("#check-removed").checked;
-                                    } }
                                 />
                                 <div>DELETED</div>
                             </label>
-                            <input type="checkbox"
-                                   checked={ todo.isChecked ? 'checked' : '' }
-                                   onChange={ (e) => {
-                                       updatedTodo.isChecked = e.target.checked;
-                                   } }
-                            /> FINISHED
+                            <label
+                                className="todo-checkbox-control"
+                            >
+                                <input
+                                    id="check-finished"
+                                    className="hidden-checkbox"
+                                    type="checkbox"
+                                    defaultChecked={ todo.isChecked ? 'checked' : '' }
+                                    onChange={ (e) => {
+                                        updatedTodo.isChecked = e.target.checked;
+                                        const isUpdated = updatedTodo.isChecked !== todo.isChecked;
+                                        this.toggleCheck(e.target, isUpdated);
+                                    } }
+                                />
+                                <div
+                                    className="control-box"
+                                />
+                                <div>FINISHED</div>
+                            </label>
                         </div>
                         <div className="todo-info">
                             <div className="created-date">
